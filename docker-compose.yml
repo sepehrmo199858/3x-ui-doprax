@@ -1,13 +1,16 @@
-version: '3'
+version: '3.8'
 
 services:
   3x-ui:
     image: ghcr.io/mhsanaei/3x-ui:latest
-    environment:
-      - PORT=3000
-      - DB_TYPE=sqlite
-      - DB_PATH=/data/3xui.db
-    volumes:
-      - ./data:/data
+    container_name: 3x-ui
     ports:
-      - "3000:3000"
+      - "54321:54321"   # Panel port
+      - "8443:8443"       # Xray/V2Ray default
+      - "80:80"         # Optional, for redirect or config
+    volumes:
+      - 3xui-data:/etc/x-ui
+    restart: always
+
+volumes:
+  3xui-data:
