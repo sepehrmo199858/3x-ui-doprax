@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  3x-ui:
+    image: ghcr.io/mhsanaei/3x-ui:latest
+    environment:
+      - PORT=3000
+      - DB_TYPE=sqlite
+      - DB_PATH=/data/3xui.db
+    volumes:
+      - ./data:/data
+    ports:
+      - "3000:3000"
